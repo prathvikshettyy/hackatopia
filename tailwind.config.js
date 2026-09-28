@@ -8,48 +8,49 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: {
-          950: '#030712',
-          900: '#070C18',
-          850: '#0B1120',
-          800: '#0F172A',
-          750: '#15213D',
-          700: '#1E293B',
-          600: '#334155',
+        gov: {
+          50: '#F8FAFC',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B',
+          600: '#475569',
+          700: '#334155',
+          800: '#1E293B',
+          850: '#141E33',
+          900: '#0F172A',
+          950: '#0A0F1D',
         },
-        cyber: {
-          cyan: '#00F0FF',
-          blue: '#38BDF8',
-          teal: '#14B8A6',
-          purple: '#A855F7',
-          violet: '#8B5CF6',
-          pink: '#F43F5E',
-          amber: '#F59E0B',
-          emerald: '#10B981',
+        navy: {
+          950: '#070C18',
+          900: '#0B1326',
+          850: '#0F1B35',
+          800: '#152445',
+          700: '#1E335C',
+        },
+        brand: {
+          blue: '#1D4ED8',
+          lightBlue: '#2563EB',
+          sky: '#0284C7',
+          steel: '#38BDF8',
+          emerald: '#059669',
+          amber: '#D97706',
+          crimson: '#DC2626',
+          slate: '#475569',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
-        display: ['Outfit', 'Inter', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace'],
+        display: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        'glow-cyan': '0 0 20px -3px rgba(0, 240, 255, 0.25)',
-        'glow-purple': '0 0 20px -3px rgba(168, 85, 247, 0.25)',
-        'glow-emerald': '0 0 20px -3px rgba(16, 185, 129, 0.25)',
-        'glow-rose': '0 0 20px -3px rgba(244, 63, 94, 0.25)',
-        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        'gov-sm': '0 1px 2px 0 rgba(0, 0, 0, 0.25)',
+        'gov-md': '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3)',
+        'gov-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4)',
+        'gov-card': '0 0 0 1px rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.3)',
       },
-      animation: {
-        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'scanline': 'scan 8s linear infinite',
-      },
-      keyframes: {
-        scan: {
-          '0%': { transform: 'translateY(-100%)' },
-          '100%': { transform: 'translateY(1000%)' },
-        }
-      }
     },
   },
   plugins: [],

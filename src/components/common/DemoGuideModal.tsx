@@ -1,36 +1,29 @@
 import React from 'react';
 import { 
-  CheckCircle2, 
   ChevronRight, 
   ChevronLeft, 
   X, 
-  Sparkles, 
   Play, 
   RotateCcw,
-  Shield,
-  FileCheck2,
-  FileWarning,
-  Download,
-  Building2,
-  UserCheck
+  CheckSquare
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
 export const DEMO_STEPS = [
   {
     step: 1,
-    title: 'Login as Property Owner',
-    subtitle: 'Access citizen portal',
+    title: 'Login as Citizen Landholder',
+    subtitle: 'Citizen perspective',
     role: 'OWNER',
-    description: 'Switch context to citizen Ravi Kumar, who owns land in Sirsi, Uttara Kannada.',
-    actionLabel: 'Switch to Owner Portal',
+    description: 'Switch context to citizen Ravi Kumar, who owns agricultural land in Sirsi, Uttara Kannada.',
+    actionLabel: 'Switch to Citizen Portal',
   },
   {
     step: 2,
-    title: "Register Ravi Kumar's Property",
-    subtitle: 'Fill cadastral details',
+    title: "Register Ravi Kumar's Land Parcel",
+    subtitle: 'Cadastral details',
     role: 'OWNER',
-    description: 'Enter Survey No 124/3A, Sirsi Rural, 1.2 Acres, ULPIN, and coordinates.',
+    description: 'Enter Survey No 124/3A, Sirsi Rural, 1.20 Acres, ULPIN, and coordinates.',
     actionLabel: 'Open Registration Form',
   },
   {
@@ -38,15 +31,15 @@ export const DEMO_STEPS = [
     title: 'Upload Property Evidence',
     subtitle: 'Photos, deeds, tax receipts',
     role: 'OWNER',
-    description: 'Upload high-resolution property photograph, notarized deed copy, and GPS logs.',
-    actionLabel: 'Inspect Preserved Evidence',
+    description: 'Upload property photograph, notarized deed copy, and GPS boundary coordinates.',
+    actionLabel: 'Inspect Evidence Queue',
   },
   {
     step: 4,
     title: 'Verify Hashes & Timestamps',
-    subtitle: 'Cryptographic anchor',
+    subtitle: 'Cryptographic proof',
     role: 'OWNER',
-    description: 'Examine generated SHA-256 digests and immutable timestamps anchored to the vault.',
+    description: 'Examine generated SHA-256 digests and immutable timestamps anchored in the vault.',
     actionLabel: 'View Evidence Vault',
   },
   {
@@ -54,15 +47,15 @@ export const DEMO_STEPS = [
     title: 'Simulate Document Loss',
     subtitle: 'Disaster event triggered',
     role: 'OWNER',
-    description: 'Simulate severe Western Ghats flood/landslide destroying all physical deeds and papers.',
+    description: 'Simulate Western Ghats flood & mudslide destroying all physical papers and deeds.',
     actionLabel: 'Trigger Disaster Simulation',
   },
   {
     step: 6,
-    title: 'Click "Recover My Property"',
+    title: 'Click "Recover My Property Evidence"',
     subtitle: 'Disaster recovery initiation',
     role: 'OWNER',
-    description: 'Launch the recovery wizard to reconstruct evidence without physical papers.',
+    description: 'Launch the recovery engine to reconstruct evidence without physical papers.',
     actionLabel: 'Open Recovery Wizard',
   },
   {
@@ -75,8 +68,8 @@ export const DEMO_STEPS = [
   },
   {
     step: 8,
-    title: 'Retrieve Government + HARMONY Evidence',
-    subtitle: 'Dual-record fusion',
+    title: 'Retrieve Dual-Record Evidence',
+    subtitle: 'Govt + HARMONY Evidence',
     role: 'OWNER',
     description: 'Retrieve official land record together with preserved cryptographic evidence.',
     actionLabel: 'View Dual-Record File',
@@ -86,12 +79,12 @@ export const DEMO_STEPS = [
     title: 'Run Verification Engine',
     subtitle: '94% Consistency Check',
     role: 'OWNER',
-    description: 'Execute multi-point algorithmic verification and AI consistency cross-check.',
+    description: 'Execute multi-point algorithmic verification and consistency cross-check.',
     actionLabel: 'Run Verification Engine',
   },
   {
     step: 10,
-    title: 'Login as Authority',
+    title: 'Login as Revenue Authority',
     subtitle: 'Sub-Divisional Magistrate role',
     role: 'AUTHORITY',
     description: 'Switch to official government authority dashboard to adjudicate the recovery case.',
@@ -108,15 +101,15 @@ export const DEMO_STEPS = [
   {
     step: 12,
     title: 'Review Evidence & Attestations',
-    subtitle: 'Neighbor & Field corroboration',
+    subtitle: 'Neighbor & Officer statements',
     role: 'AUTHORITY',
-    description: 'Validate statements from neighbor Suresh Kumar and Village Agricultural Officer.',
+    description: 'Validate statements from neighbor Suresh Kumar and Village Agricultural Assistant.',
     actionLabel: 'Inspect Attestations',
   },
   {
     step: 13,
     title: 'Approve Evidence Package',
-    subtitle: 'Not ownership — evidence package',
+    subtitle: 'Certify evidence package',
     role: 'AUTHORITY',
     description: 'Seal the recovery package with digital authority disposition.',
     actionLabel: 'Approve Evidence Package',
@@ -124,7 +117,7 @@ export const DEMO_STEPS = [
   {
     step: 14,
     title: 'Download Recovery Package PDF',
-    subtitle: 'Official official legal dossier',
+    subtitle: 'Official statutory dossier',
     role: 'AUTHORITY',
     description: 'Generate and download the official 7-section Property Evidence Recovery Package PDF.',
     actionLabel: 'Download Recovery PDF',
@@ -146,37 +139,38 @@ export const DemoGuideModal: React.FC = () => {
   const progressPercent = Math.round((guidedDemoStep / DEMO_STEPS.length) * 100);
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-96 max-w-[calc(100vw-2rem)] bg-navy-900/95 border border-cyan-500/40 rounded-2xl shadow-glass backdrop-blur-xl overflow-hidden animate-slideUp">
+    <div className="fixed bottom-4 right-4 z-50 w-96 max-w-[calc(100vw-2rem)] bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden font-sans">
+      
       {/* Top Header */}
-      <div className="bg-gradient-to-r from-cyan-950/80 via-navy-900 to-purple-950/80 p-3.5 border-b border-slate-800 flex items-center justify-between">
+      <div className="bg-slate-950 p-3.5 border-b border-slate-800 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
+          <div className="w-7 h-7 rounded-md bg-blue-950 border border-blue-800 flex items-center justify-center text-blue-400">
+            <CheckSquare className="w-4 h-4" />
           </div>
           <div>
-            <div className="text-xs font-bold text-slate-100 flex items-center gap-1.5 font-display tracking-wide">
-              <span>3-MINUTE DEMO RUNNER</span>
-              <span className="text-[10px] font-mono px-1.5 py-0.2 bg-cyan-500/20 text-cyan-300 rounded border border-cyan-500/30">
+            <div className="text-xs font-bold text-white flex items-center gap-1.5 font-mono">
+              <span>DEMO PRESENTATION RUNNER</span>
+              <span className="text-[10px] px-1.5 py-0.2 bg-blue-900 text-blue-200 rounded">
                 Step {guidedDemoStep || 1}/14
               </span>
             </div>
-            <div className="text-[11px] text-slate-400">
+            <div className="text-[11px] text-slate-400 font-sans">
               Buildathon Presentation Walkthrough
             </div>
           </div>
         </div>
         <button
           onClick={() => setDemoGuideOpen(false)}
-          className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors"
+          className="text-slate-400 hover:text-white p-1 rounded-md hover:bg-slate-800"
         >
           <X className="w-4 h-4" />
         </button>
       </div>
 
       {/* Progress Bar */}
-      <div className="w-full bg-slate-950 h-1.5">
+      <div className="w-full bg-slate-950 h-1">
         <div 
-          className="h-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 transition-all duration-300"
+          className="h-full bg-blue-600 transition-all duration-300"
           style={{ width: `${progressPercent}%` }}
         />
       </div>
@@ -185,7 +179,7 @@ export const DemoGuideModal: React.FC = () => {
       <div className="p-4 space-y-3">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <div className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-semibold">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
               {currentStepData.subtitle}
             </div>
             <h4 className="text-sm font-bold text-white mt-0.5">
@@ -194,23 +188,23 @@ export const DemoGuideModal: React.FC = () => {
           </div>
           <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${
             currentStepData.role === 'OWNER' 
-              ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30' 
-              : 'bg-purple-500/10 text-purple-300 border-purple-500/30'
+              ? 'bg-slate-800 text-blue-300 border-slate-700' 
+              : 'bg-slate-800 text-purple-300 border-slate-700'
           }`}>
             {currentStepData.role}
           </span>
         </div>
 
-        <p className="text-xs text-slate-300 leading-relaxed bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+        <p className="text-xs text-slate-300 leading-relaxed bg-slate-950 p-2.5 rounded-md border border-slate-800">
           {currentStepData.description}
         </p>
 
         {/* Action Button */}
         <button
           onClick={() => jumpToDemoStep(guidedDemoStep)}
-          className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-glow-cyan transition-all"
+          className="w-full py-2 px-3 rounded-md bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-sm"
         >
-          <Play className="w-3.5 h-3.5 fill-slate-950" />
+          <Play className="w-3.5 h-3.5 fill-white" />
           <span>Execute: {currentStepData.actionLabel}</span>
         </button>
 
@@ -219,7 +213,7 @@ export const DemoGuideModal: React.FC = () => {
           <button
             disabled={guidedDemoStep <= 1}
             onClick={() => jumpToDemoStep(Math.max(1, guidedDemoStep - 1))}
-            className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed border border-slate-700/60"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed border border-slate-700"
           >
             <ChevronLeft className="w-3.5 h-3.5" />
             Prev
@@ -232,19 +226,19 @@ export const DemoGuideModal: React.FC = () => {
           <button
             disabled={guidedDemoStep >= 14}
             onClick={() => jumpToDemoStep(Math.min(14, guidedDemoStep + 1))}
-            className="flex items-center gap-1 px-3 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/30 border border-cyan-500/30 disabled:opacity-30 disabled:cursor-not-allowed font-medium"
+            className="flex items-center gap-1 px-3 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 disabled:opacity-30 disabled:cursor-not-allowed font-medium"
           >
             Next
             <ChevronRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        {/* Quick step picker dropdown */}
-        <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+        {/* Step dropdown */}
+        <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
           <select
             value={guidedDemoStep}
             onChange={(e) => jumpToDemoStep(Number(e.target.value))}
-            className="bg-slate-950 text-slate-300 text-[11px] rounded border border-slate-700 px-2 py-1 outline-none focus:border-cyan-400"
+            className="bg-slate-950 text-slate-300 text-[11px] rounded border border-slate-700 px-2 py-1 outline-none"
           >
             {DEMO_STEPS.map(s => (
               <option key={s.step} value={s.step}>
@@ -258,11 +252,11 @@ export const DemoGuideModal: React.FC = () => {
               resetDemoData();
               jumpToDemoStep(1);
             }}
-            className="flex items-center gap-1 text-slate-400 hover:text-cyan-400 transition-colors"
+            className="flex items-center gap-1 text-slate-400 hover:text-white transition-colors"
             title="Restart demo from Step 1"
           >
             <RotateCcw className="w-3 h-3" />
-            Restart Demo
+            Restart
           </button>
         </div>
       </div>

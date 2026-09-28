@@ -2,24 +2,20 @@ import React from 'react';
 import { 
   Shield, 
   FileCheck2, 
-  Sparkles, 
   Database, 
-  Lock, 
   Building2, 
   UserCheck, 
   Sliders, 
   ArrowRight, 
-  Waves, 
-  Flame, 
+  AlertTriangle, 
   Play, 
   CheckCircle2, 
-  Layers, 
-  MapPin, 
-  FileText,
-  Clock,
-  Compass,
   FileSearch,
-  Scale
+  Scale,
+  FileX,
+  Lock,
+  Compass,
+  FileText
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
@@ -37,47 +33,44 @@ export const LandingPage: React.FC = () => {
   const raviProp = properties.find(p => p.id === 'KA-SIR-10234') || properties[0];
 
   return (
-    <div className="space-y-16 pb-12">
+    <div className="space-y-16 pb-16">
       
-      {/* Hero Section */}
-      <section className="relative pt-12 pb-16 overflow-hidden">
-        {/* Glow ambient background circles */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-cyan-500/15 via-purple-500/10 to-transparent blur-3xl pointer-events-none rounded-full" />
-
-        <div className="max-w-5xl mx-auto px-4 text-center relative z-10 space-y-6">
+      {/* Institutional Hero Section */}
+      <section className="border-b border-slate-800 bg-gov-950 py-14">
+        <div className="max-w-5xl mx-auto px-4 text-center space-y-6">
           
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-cyan-500/30 text-cyan-300 text-xs font-mono shadow-glow-cyan">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-            <span>DISASTER-RESILIENT PROPERTY EVIDENCE & RECOVERY PLATFORM</span>
+          {/* Institutional Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900 border border-slate-700 text-slate-300 text-xs font-mono">
+            <span className="w-2 h-2 rounded-full bg-blue-500" />
+            <span>DISASTER LAND EVIDENCE RECONSTRUCTION SYSTEM</span>
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl sm:text-6xl font-display font-black tracking-tight text-white">
-            PROJECT <span className="gradient-text-cyan">HARMONY</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white font-sans">
+            PROJECT HARMONY
           </h1>
 
           {/* Tagline */}
-          <p className="text-xl sm:text-2xl font-serif italic text-cyan-200/90 font-medium">
+          <p className="text-xl sm:text-2xl text-slate-200 font-serif italic">
             “Preserve the evidence. Restore the record.”
           </p>
 
           {/* Subheading */}
-          <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            When disaster destroys physical property documents, <strong className="text-white">HARMONY</strong> helps reconstruct the evidence needed for official government recovery and authority review.
+          <p className="text-sm sm:text-base text-slate-300 max-w-3xl mx-auto leading-relaxed font-sans">
+            When disasters destroy physical deeds and land titles, <strong className="text-white">PROJECT HARMONY</strong> reconstructs the pre-disaster evidence baseline by linking preserved cryptographic digital records with official state land registries for statutory authority adjudication.
           </p>
 
-          {/* Primary Action Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
             <button
               onClick={() => {
                 setRole('OWNER');
                 setCurrentView('register-property');
               }}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm flex items-center gap-2 shadow-glow-cyan transition-all transform hover:-translate-y-0.5"
+              className="px-5 py-2.5 rounded-md bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 transition-colors shadow-sm"
             >
               <FileCheck2 className="w-4 h-4" />
-              <span>Register Property</span>
+              <span>Register Land Parcel</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
@@ -86,10 +79,10 @@ export const LandingPage: React.FC = () => {
                 setRole('OWNER');
                 setCurrentView('property-recovery');
               }}
-              className="px-6 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/40 hover:border-cyan-400 text-cyan-300 font-semibold text-sm flex items-center gap-2 transition-all transform hover:-translate-y-0.5"
+              className="px-5 py-2.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-600 font-semibold text-xs sm:text-sm flex items-center gap-2 transition-colors"
             >
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span>Recover Property</span>
+              <Database className="w-4 h-4 text-blue-400" />
+              <span>Recover Property Evidence</span>
             </button>
 
             <button
@@ -97,89 +90,154 @@ export const LandingPage: React.FC = () => {
                 setDemoGuideOpen(true);
                 jumpToDemoStep(1);
               }}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 border border-purple-500/40 text-purple-200 font-semibold text-sm flex items-center gap-2 transition-all shadow-glow-purple"
+              className="px-5 py-2.5 rounded-md bg-slate-900 hover:bg-slate-800 text-blue-300 border border-blue-500/40 font-semibold text-xs sm:text-sm flex items-center gap-2 transition-colors"
             >
-              <Play className="w-4 h-4 fill-purple-400 text-purple-400" />
-              <span>Start 3-Min Buildathon Demo</span>
+              <Play className="w-4 h-4 fill-blue-400 text-blue-400" />
+              <span>3-Minute Demo Walkthrough</span>
             </button>
           </div>
 
-          {/* Disclaimer */}
-          <p className="text-xs text-slate-400 font-mono pt-2">
-            ⚠️ Prototype system. Official ownership decisions remain with authorized authorities.
+          {/* Regulatory Footnote */}
+          <p className="text-[11px] text-slate-400 font-mono pt-2">
+            Prototype System. Statutory property ownership adjudications remain with authorized government revenue officers.
           </p>
 
         </div>
       </section>
 
-      {/* Visual Process Section: CAPTURE → VERIFY → PRESERVE → RECOVER */}
+      {/* 4-Stage Institutional Pipeline (Requirement #3) */}
       <section className="max-w-7xl mx-auto px-4">
-        <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-slate-800 relative overflow-hidden">
+        <div className="gov-card p-6 sm:p-8">
           <div className="text-center mb-8">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-cyan-400 font-semibold">
-              EVIDENCE RECOVERY LIFECYCLE
+            <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-semibold">
+              STATUTORY WORKFLOW PIPELINE
             </span>
-            <h2 className="text-2xl font-bold font-display text-white mt-1">
-              From Pre-Disaster Preservation to Official Restoration
+            <h2 className="text-xl sm:text-2xl font-bold text-white mt-1">
+              From Pre-Disaster Preservation to Official Adjudication
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             
             {/* Step 1 */}
-            <div className="glass-panel-subtle p-5 rounded-xl border border-slate-800 relative group hover:border-cyan-500/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-bold mb-3">
-                01
+            <div className="gov-card-subtle p-5 space-y-2">
+              <div className="text-xs font-mono font-bold text-blue-400">
+                STAGE 01
               </div>
-              <h3 className="font-bold text-white text-base mb-1 font-display">CAPTURE</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Citizens register cadastral survey boundaries, high-res photos, utility bills, and sale deed copies.
+              <h3 className="font-bold text-white text-sm">CAPTURE</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Landholders record cadastral survey coordinates, property frontage photographs, notarized deed extracts, and tax receipts.
               </p>
-              <div className="mt-3 text-[11px] font-mono text-cyan-400/80">
-                GPS + OCR + Metadata
+              <div className="text-[11px] font-mono text-slate-400 pt-1 border-t border-slate-800">
+                ULPIN & Cadastral Ingestion
               </div>
             </div>
 
             {/* Step 2 */}
-            <div className="glass-panel-subtle p-5 rounded-xl border border-slate-800 relative group hover:border-purple-500/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 font-bold mb-3">
-                02
+            <div className="gov-card-subtle p-5 space-y-2">
+              <div className="text-xs font-mono font-bold text-blue-400">
+                STAGE 02
               </div>
-              <h3 className="font-bold text-white text-base mb-1 font-display">VERIFY</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Algorithmic cross-check against demo government records for owner, parcel survey number, and area consistency.
+              <h3 className="font-bold text-white text-sm">VERIFY</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Dual-source automated cross-check against demo government master records for survey parcel, owner identity, and area consistency.
               </p>
-              <div className="mt-3 text-[11px] font-mono text-purple-400/80">
+              <div className="text-[11px] font-mono text-slate-400 pt-1 border-t border-slate-800">
                 Consistency Engine
               </div>
             </div>
 
             {/* Step 3 */}
-            <div className="glass-panel-subtle p-5 rounded-xl border border-slate-800 relative group hover:border-emerald-500/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold mb-3">
-                03
+            <div className="gov-card-subtle p-5 space-y-2">
+              <div className="text-xs font-mono font-bold text-blue-400">
+                STAGE 03
               </div>
-              <h3 className="font-bold text-white text-base mb-1 font-display">PRESERVE</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Generates SHA-256 cryptographic digests and anchors pre-disaster timestamps onto the immutable audit ledger.
+              <h3 className="font-bold text-white text-sm">PRESERVE</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Calculates client-side SHA-256 cryptographic fingerprints and anchors pre-disaster timestamps onto the immutable audit ledger.
               </p>
-              <div className="mt-3 text-[11px] font-mono text-emerald-400/80">
-                SHA-256 Proofs
+              <div className="text-[11px] font-mono text-slate-400 pt-1 border-t border-slate-800">
+                SHA-256 Hash Anchors
               </div>
             </div>
 
             {/* Step 4 */}
-            <div className="glass-panel-subtle p-5 rounded-xl border border-slate-800 relative group hover:border-cyan-500/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-bold mb-3">
-                04
+            <div className="gov-card-subtle p-5 space-y-2">
+              <div className="text-xs font-mono font-bold text-blue-400">
+                STAGE 04
               </div>
-              <h3 className="font-bold text-white text-base mb-1 font-display">RECOVER</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                When disaster strikes, the platform reconstructs all evidence into a certified dossier for authority adjudication.
+              <h3 className="font-bold text-white text-sm">RECOVER</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Reconstructs corroborated records and neighbor attestations into a sealed Property Evidence Recovery Package PDF for official review.
               </p>
-              <div className="mt-3 text-[11px] font-mono text-cyan-400/80">
-                Certified PDF Package
+              <div className="text-[11px] font-mono text-slate-400 pt-1 border-t border-slate-800">
+                Statutory Dossier PDF
               </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Problem vs Solution Comparison Table */}
+      <section className="max-w-7xl mx-auto px-4">
+        <div className="gov-card p-6 sm:p-8 space-y-6">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-semibold">
+              THE PROBLEM & THE HARMONY SOLUTION
+            </span>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mt-1">
+              Overcoming Post-Disaster Property Paralysis
+            </h2>
+            <p className="text-xs text-slate-300 mt-2">
+              Physical property papers are vulnerable to water, mud, and fire. When they disappear, landholders face bureaucratic deadlocks.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* Without Project Harmony */}
+            <div className="p-5 rounded-lg bg-red-950/20 border border-red-900/40 space-y-3">
+              <div className="flex items-center gap-2 text-red-400 font-bold text-xs uppercase font-mono tracking-wider">
+                <FileX className="w-4 h-4" />
+                <span>Physical Paper Vulnerability (Current State)</span>
+              </div>
+              <ul className="space-y-2.5 text-xs text-slate-300">
+                <li className="flex items-start gap-2">
+                  <span className="text-red-400 font-bold">✕</span>
+                  <span><strong>Physical deeds destroyed:</strong> Landslides and floods ruin home registries, leaving no local proof of boundaries.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-400 font-bold">✕</span>
+                  <span><strong>Years of legal delays:</strong> Citizens must file costly title suits and wait years for reconstruction orders.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-400 font-bold">✕</span>
+                  <span><strong>Fraud risk:</strong> Secondary paper copies can be fabricated or disputed by unauthorized claimants.</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* With Project Harmony */}
+            <div className="p-5 rounded-lg bg-emerald-950/20 border border-emerald-900/40 space-y-3">
+              <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase font-mono tracking-wider">
+                <CheckCircle2 className="w-4 h-4" />
+                <span>PROJECT HARMONY Resilience</span>
+              </div>
+              <ul className="space-y-2.5 text-xs text-slate-300">
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400 font-bold">✓</span>
+                  <span><strong>Immutable Digital Proof:</strong> Pre-disaster deeds and photographs are anchored with SHA-256 fingerprints before disaster strikes.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400 font-bold">✓</span>
+                  <span><strong>Rapid Cadastral Pairing:</strong> Connects state land databases with corroborated field evidence in seconds.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400 font-bold">✓</span>
+                  <span><strong>Statutory Dossier:</strong> Compiles an official, tamper-proof recovery dossier for Sub-Divisional Magistrates.</span>
+                </li>
+              </ul>
             </div>
 
           </div>
@@ -188,41 +246,40 @@ export const LandingPage: React.FC = () => {
 
       {/* 3 User Roles Cards (Requirement #2) */}
       <section className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <span className="text-[11px] font-mono uppercase tracking-widest text-purple-400 font-semibold">
-            DEMO USER ROLES
+        <div className="text-center mb-6">
+          <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-semibold">
+            PORTAL ACCESS BY ROLE
           </span>
-          <h2 className="text-2xl font-bold font-display text-white mt-1">
-            Explore PROJECT HARMONY by Persona
+          <h2 className="text-xl sm:text-2xl font-bold text-white mt-1">
+            Access Dedicated Functional Portals
           </h2>
           <p className="text-xs text-slate-400 mt-1">
-            No password required for MVP demo. Click any role below to enter the platform immediately.
+            Built for demo access without authentication hurdles. Click below to enter immediately.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Role 1: Property Owner */}
-          <div className="glass-panel rounded-2xl p-6 border border-cyan-500/30 flex flex-col justify-between hover:border-cyan-400 transition-all shadow-glass">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-400 mb-4">
-                <UserCheck className="w-6 h-6" />
+          <div className="gov-card p-6 flex flex-col justify-between space-y-4 hover:border-slate-600 transition-colors">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-md bg-blue-950 border border-blue-800 flex items-center justify-center text-blue-400">
+                <UserCheck className="w-5 h-5" />
               </div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">
-                ROLE 1
+              <div className="text-[10px] font-mono uppercase text-blue-400 font-bold">
+                PORTAL 01
               </div>
-              <h3 className="text-lg font-bold text-white font-display mt-0.5">
-                Property Owner
+              <h3 className="text-base font-bold text-white">
+                Landowner / Citizen Portal
               </h3>
-              <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                Citizens facing document loss from floods, landslides, or fires.
+              <p className="text-xs text-slate-300 leading-relaxed">
+                For property owners seeking to protect land records against natural catastrophes and recover evidence post-disaster.
               </p>
-              <ul className="mt-4 space-y-1.5 text-xs text-slate-400">
-                <li className="flex items-center gap-2">✓ Register property & cadastral coordinates</li>
-                <li className="flex items-center gap-2">✓ Upload & anchor evidence with SHA-256</li>
-                <li className="flex items-center gap-2">✓ Simulate physical document loss</li>
-                <li className="flex items-center gap-2">✓ Reconstruct evidence without physical deeds</li>
-                <li className="flex items-center gap-2">✓ Submit recovery request to authority</li>
+              <ul className="space-y-1.5 text-xs text-slate-400 pt-1">
+                <li className="flex items-center gap-1.5">✓ Register cadastral coordinates & ULPIN</li>
+                <li className="flex items-center gap-1.5">✓ Upload deeds & photos with SHA-256 hashing</li>
+                <li className="flex items-center gap-1.5">✓ Simulate physical document destruction</li>
+                <li className="flex items-center gap-1.5">✓ Reconstruct dual-source evidence dossier</li>
               </ul>
             </div>
             <button
@@ -230,34 +287,33 @@ export const LandingPage: React.FC = () => {
                 setRole('OWNER');
                 setCurrentView('owner-dashboard');
               }}
-              className="mt-6 w-full py-2.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-bold flex items-center justify-center gap-2 transition-all"
+              className="w-full py-2 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
             >
-              <span>Enter as Property Owner</span>
+              <span>Enter Citizen Portal</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           {/* Role 2: Authority Officer */}
-          <div className="glass-panel rounded-2xl p-6 border border-purple-500/30 flex flex-col justify-between hover:border-purple-400 transition-all shadow-glass">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-purple-400 mb-4">
-                <Building2 className="w-6 h-6" />
+          <div className="gov-card p-6 flex flex-col justify-between space-y-4 hover:border-slate-600 transition-colors">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-200">
+                <Building2 className="w-5 h-5" />
               </div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-purple-400 font-bold">
-                ROLE 2
+              <div className="text-[10px] font-mono uppercase text-slate-400 font-bold">
+                PORTAL 02
               </div>
-              <h3 className="text-lg font-bold text-white font-display mt-0.5">
-                Authorized Authority
+              <h3 className="text-base font-bold text-white">
+                Authorized Revenue Authority
               </h3>
-              <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                Tahsildars, Sub-Divisional Magistrates & Revenue Disaster Recovery Officers.
+              <p className="text-xs text-slate-300 leading-relaxed">
+                For Sub-Divisional Magistrates, Tahsildars, and District Revenue Officers adjudicating disaster claims.
               </p>
-              <ul className="mt-4 space-y-1.5 text-xs text-slate-400">
-                <li className="flex items-center gap-2">✓ View incoming citizen recovery claims</li>
-                <li className="flex items-center gap-2">✓ Inspect 7-section case dossier</li>
-                <li className="flex items-center gap-2">✓ Review neighbor & field attestations</li>
-                <li className="flex items-center gap-2">✓ Flag conflicting survey parcel claims</li>
-                <li className="flex items-center gap-2">✓ Approve evidence package & generate PDF</li>
+              <ul className="space-y-1.5 text-xs text-slate-400 pt-1">
+                <li className="flex items-center gap-1.5">✓ Review incoming citizen recovery dockets</li>
+                <li className="flex items-center gap-1.5">✓ Inspect 7-section corroborated evidence</li>
+                <li className="flex items-center gap-1.5">✓ Evaluate neighbor & officer attestations</li>
+                <li className="flex items-center gap-1.5">✓ Flag cadastral survey conflicts</li>
               </ul>
             </div>
             <button
@@ -265,34 +321,33 @@ export const LandingPage: React.FC = () => {
                 setRole('AUTHORITY');
                 setCurrentView('authority-dashboard');
               }}
-              className="mt-6 w-full py-2.5 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/40 text-xs font-bold flex items-center justify-center gap-2 transition-all"
+              className="w-full py-2 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
             >
-              <span>Enter as Authority Officer</span>
+              <span>Enter Authority Portal</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          {/* Role 3: Admin & Ledger Auditor */}
-          <div className="glass-panel rounded-2xl p-6 border border-amber-500/30 flex flex-col justify-between hover:border-amber-400 transition-all shadow-glass">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-400 mb-4">
-                <Sliders className="w-6 h-6" />
+          {/* Role 3: Admin & Auditor */}
+          <div className="gov-card p-6 flex flex-col justify-between space-y-4 hover:border-slate-600 transition-colors">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-200">
+                <Sliders className="w-5 h-5" />
               </div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-bold">
-                ROLE 3
+              <div className="text-[10px] font-mono uppercase text-slate-400 font-bold">
+                PORTAL 03
               </div>
-              <h3 className="text-lg font-bold text-white font-display mt-0.5">
-                Admin / Auditor
+              <h3 className="text-base font-bold text-white">
+                Cadastre Auditor & Admin
               </h3>
-              <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                System supervisors, disaster coordinators, and blockchain ledger auditors.
+              <p className="text-xs text-slate-300 leading-relaxed">
+                For disaster management directors, land records supervisors, and cryptographic audit verifiers.
               </p>
-              <ul className="mt-4 space-y-1.5 text-xs text-slate-400">
-                <li className="flex items-center gap-2">✓ View master properties cadastre</li>
-                <li className="flex items-center gap-2">✓ Cryptographic hash vault verification</li>
-                <li className="flex items-center gap-2">✓ Immutable blockchain audit ledger</li>
-                <li className="flex items-center gap-2">✓ System analytics & consistency scores</li>
-                <li className="flex items-center gap-2">✓ Disaster zone vulnerability mapping</li>
+              <ul className="space-y-1.5 text-xs text-slate-400 pt-1">
+                <li className="flex items-center gap-1.5">✓ Master cadastral index & spatial layer</li>
+                <li className="flex items-center gap-1.5">✓ SHA-256 cryptographic audit chain</li>
+                <li className="flex items-center gap-1.5">✓ Disaster impact vulnerability mapping</li>
+                <li className="flex items-center gap-1.5">✓ Buildathon demo controls & dataset resets</li>
               </ul>
             </div>
             <button
@@ -300,9 +355,9 @@ export const LandingPage: React.FC = () => {
                 setRole('ADMIN');
                 setCurrentView('admin-dashboard');
               }}
-              className="mt-6 w-full py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold flex items-center justify-center gap-2 transition-all"
+              className="w-full py-2 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
             >
-              <span>Enter as System Admin</span>
+              <span>Enter Admin Portal</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -310,114 +365,57 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Disaster Scenario Spotlight */}
+      {/* Western Ghats Disaster Spotlight */}
       <section className="max-w-7xl mx-auto px-4">
-        <div className="bg-gradient-to-r from-slate-900 via-navy-900 to-rose-950/40 rounded-2xl p-6 sm:p-8 border border-rose-500/30 shadow-2xl relative overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-            
-            <div className="lg:col-span-2 space-y-3">
-              <div className="flex items-center gap-2 text-rose-400 text-xs font-mono font-bold uppercase tracking-wider">
-                <Waves className="w-4 h-4 animate-pulse" />
-                <span>ACTIVE DEMO SCENARIO • WESTERN GHATS DISASTER</span>
-              </div>
-              <h3 className="text-2xl font-bold font-display text-white">
-                Ravi Kumar's Land Parcel (Sy 124/3A, Sirsi)
-              </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                A massive monsoon landslide inundated the property dwelling. Ravi's registered sale deed and tax receipts are completely gone. Experience how PROJECT HARMONY retrieves the master government cadastral index, pairs it with preserved digital photos and neighbor attestations, and outputs an official Recovery Dossier for the Sub-Divisional Magistrate.
-              </p>
-              <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-mono text-slate-300">
-                <span className="px-2.5 py-1 bg-slate-950/80 rounded border border-slate-700">
-                  Parcel: KA-SIR-10234
-                </span>
-                <span className="px-2.5 py-1 bg-slate-950/80 rounded border border-slate-700">
-                  Survey: 124/3A
-                </span>
-                <span className="px-2.5 py-1 bg-slate-950/80 rounded border border-slate-700">
-                  Consistency: 94% Match
-                </span>
-              </div>
+        <div className="p-6 rounded-xl bg-slate-900 border border-red-500/30 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-red-400 text-xs font-mono font-bold uppercase">
+              <AlertTriangle className="w-4 h-4" />
+              <span>ACTIVE DISASTER INCIDENT: WESTERN GHATS FLASH FLOOD & LANDSLIDE</span>
             </div>
+            <h3 className="text-lg font-bold text-white">
+              Primary Presentation Scenario: Ravi Kumar (Survey 124/3A, Sirsi)
+            </h3>
+            <p className="text-xs text-slate-300 max-w-3xl leading-relaxed">
+              Torrential rains and mudslides destroyed the physical dwelling and washed away the paper sale deed and tax receipts. Experience how PROJECT HARMONY retrieves the master cadastral entry, recovers preserved digital evidence, verifies consistency (94%), and delivers an official Recovery Dossier for the Sub-Divisional Magistrate.
+            </p>
+          </div>
 
-            <div className="space-y-3 flex flex-col justify-center">
-              <button
-                onClick={() => setDisasterModalProperty(raviProp)}
-                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all"
-              >
-                <Waves className="w-4 h-4" />
-                <span>Simulate Document Loss</span>
-              </button>
-
-              <button
-                onClick={() => {
-                  setRole('OWNER');
-                  navigateTo('property-recovery', 'KA-SIR-10234');
-                }}
-                className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-medium text-xs flex items-center justify-center gap-2 transition-all"
-              >
-                <FileSearch className="w-4 h-4 text-cyan-400" />
-                <span>Direct Cadastre Query</span>
-              </button>
-            </div>
-
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              onClick={() => setDisasterModalProperty(raviProp)}
+              className="px-4 py-2 rounded-md bg-red-700 hover:bg-red-600 text-white font-semibold text-xs transition-colors"
+            >
+              Simulate Document Loss
+            </button>
+            <button
+              onClick={() => {
+                setRole('OWNER');
+                navigateTo('property-recovery', 'KA-SIR-10234');
+              }}
+              className="px-4 py-2 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium text-xs transition-colors"
+            >
+              Recover Cadastre
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Core Principles & Legal Guardrails */}
+      {/* Statutory Legal Boundary Notice */}
       <section className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <div className="glass-panel p-6 rounded-2xl border border-slate-800 space-y-3">
-            <div className="flex items-center gap-2 text-cyan-400 font-bold text-sm font-display">
-              <Scale className="w-5 h-5" />
-              What PROJECT HARMONY Does
-            </div>
-            <ul className="space-y-2 text-xs text-slate-300">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span><strong>Preserves digital proof:</strong> Computes client-side SHA-256 digests of deeds, bills, photos, and boundary maps prior to disasters.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span><strong>Integrates government cadastres:</strong> Cross-checks citizen uploads against official state land indices.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span><strong>Flags discrepancies:</strong> Automatically detects conflicting survey numbers and notifies authority officers.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span><strong>Generates recovery dossiers:</strong> Packages all corroborated records into an actionable legal PDF for official review.</span>
-              </li>
-            </ul>
+        <div className="p-6 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+          <div className="flex items-center gap-2 text-slate-200 font-bold text-xs uppercase font-mono">
+            <Scale className="w-4 h-4 text-blue-400" />
+            <span>Statutory Governance & Legal Guardrails</span>
           </div>
-
-          <div className="glass-panel p-6 rounded-2xl border border-rose-500/20 space-y-3 bg-gradient-to-br from-navy-950 via-slate-900 to-rose-950/20">
-            <div className="flex items-center gap-2 text-rose-300 font-bold text-sm font-display">
-              <Shield className="w-5 h-5 text-rose-400" />
-              Strict Legal Guardrails (What It Does NOT Do)
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-400 leading-relaxed">
+            <div>
+              <strong className="text-slate-200">Evidence Preservation Layer:</strong> PROJECT HARMONY provides cryptographic proof of pre-disaster documentation and spatial boundary correlation. It organizes available evidence so government officers can conduct informed inquiries.
             </div>
-            <ul className="space-y-2 text-xs text-slate-300">
-              <li className="flex items-start gap-2">
-                <span className="text-rose-400 font-bold">✕</span>
-                <span><strong>No legal deed issuance:</strong> PROJECT HARMONY does NOT create legal ownership or issue deeds.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-rose-400 font-bold">✕</span>
-                <span><strong>Does not replace government records:</strong> Official revenue master registries remain the sole source of truth.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-rose-400 font-bold">✕</span>
-                <span><strong>No autonomous ownership approvals:</strong> Consistency scores measure evidence alignment only, never legal title probability.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-rose-400 font-bold">✕</span>
-                <span><strong>Statutory authority supremacy:</strong> All final restoration orders must be signed by authorized government magistrates.</span>
-              </li>
-            </ul>
+            <div>
+              <strong className="text-slate-200">Statutory Authority Primacy:</strong> The system does NOT create ownership deeds or replace state land registries. All legal property title decrees and land records restorations remain strictly with authorized government revenue courts.
+            </div>
           </div>
-
         </div>
       </section>
 

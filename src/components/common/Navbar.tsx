@@ -13,11 +13,9 @@ import {
   Database,
   MapPin,
   Lock,
-  Sparkles,
   ExternalLink
 } from 'lucide-react';
 import { useApp, AppView } from '../../context/AppContext';
-import { UserRole } from '../../types/property';
 
 export const Navbar: React.FC = () => {
   const { 
@@ -27,7 +25,7 @@ export const Navbar: React.FC = () => {
     setCurrentView, 
     navigateTo, 
     properties, 
-    recoveryCases,
+    recoveryCases, 
     resetDemoData,
     setDemoGuideOpen,
     jumpToDemoStep
@@ -38,7 +36,6 @@ export const Navbar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const searchRef = useRef<HTMLDivElement>(null);
 
-  // Close search dropdown on click outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
@@ -63,65 +60,62 @@ export const Navbar: React.FC = () => {
     c.propertyId.toLowerCase().includes(searchTerm.toLowerCase())
   ).slice(0, 3) : [];
 
-  // Nav Links by Role
   const ownerNav: { label: string; view: AppView; icon: any }[] = [
-    { label: 'Dashboard', view: 'owner-dashboard', icon: Building2 },
-    { label: 'Register Property', view: 'register-property', icon: FileCheck2 },
-    { label: 'Recover Property', view: 'property-recovery', icon: Sparkles },
+    { label: 'Citizen Dashboard', view: 'owner-dashboard', icon: Building2 },
+    { label: 'Register Land', view: 'register-property', icon: FileCheck2 },
+    { label: 'Recover Evidence', view: 'property-recovery', icon: Database },
     { label: 'Evidence Vault', view: 'evidence-vault', icon: Lock },
-    { label: 'Map Explorer', view: 'map-view', icon: MapPin },
+    { label: 'Cadastre Map', view: 'map-view', icon: MapPin },
   ];
 
   const authorityNav: { label: string; view: AppView; icon: any }[] = [
-    { label: 'Dashboard', view: 'authority-dashboard', icon: Building2 },
-    { label: 'Govt Records', view: 'property-recovery', icon: Database },
+    { label: 'Authority Portal', view: 'authority-dashboard', icon: Building2 },
+    { label: 'Government Records', view: 'property-recovery', icon: Database },
     { label: 'Verification Engine', view: 'verification', icon: FileCheck2 },
-    { label: 'Evidence Ledger', view: 'blockchain-ledger', icon: Lock },
-    { label: 'Map Cadastre', view: 'map-view', icon: MapPin },
+    { label: 'Cryptographic Ledger', view: 'blockchain-ledger', icon: Lock },
+    { label: 'Cadastre Map', view: 'map-view', icon: MapPin },
   ];
 
   const adminNav: { label: string; view: AppView; icon: any }[] = [
     { label: 'System Overview', view: 'admin-dashboard', icon: Sliders },
-    { label: 'All Properties', view: 'property-recovery', icon: Database },
+    { label: 'Master Registry', view: 'property-recovery', icon: Database },
     { label: 'Evidence Vault', view: 'evidence-vault', icon: Lock },
-    { label: 'Integrity Ledger', view: 'blockchain-ledger', icon: Lock },
-    { label: 'Spatial Map', view: 'map-view', icon: MapPin },
+    { label: 'Audit Trail', view: 'blockchain-ledger', icon: Lock },
+    { label: 'GIS Cadastre', view: 'map-view', icon: MapPin },
   ];
 
   const activeNavLinks = role === 'OWNER' ? ownerNav : role === 'AUTHORITY' ? authorityNav : adminNav;
 
   return (
-    <nav className="sticky top-0 z-40 bg-navy-900/90 backdrop-blur-md border-b border-slate-800">
+    <nav className="sticky top-0 z-40 bg-gov-900 border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-2">
+        <div className="flex items-center justify-between h-16 gap-3">
           
-          {/* Brand Logo */}
+          {/* Official Emblem & Portal Title */}
           <div 
             onClick={() => setCurrentView('landing')} 
             className="flex items-center gap-3 cursor-pointer group shrink-0"
           >
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 flex items-center justify-center group-hover:border-cyan-400 group-hover:shadow-glow-cyan transition-all">
-              <Shield className="w-6 h-6 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
-              <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-cyan-400" />
+            <div className="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-100 group-hover:border-blue-500 transition-colors">
+              <Shield className="w-5 h-5 text-blue-400" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-display font-extrabold text-lg tracking-wider text-slate-100 group-hover:text-cyan-300 transition-colors">
+                <span className="font-bold text-base tracking-tight text-white font-sans">
                   PROJECT HARMONY
                 </span>
-                <span className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono tracking-widest bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 rounded">
-                  MVP v2.4
+                <span className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono tracking-wider bg-blue-950 text-blue-300 border border-blue-800/80 rounded">
+                  PORTAL
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 font-sans tracking-wide">
-                Preserve the evidence. Restore the record.
+              <p className="text-[11px] text-slate-400 font-sans">
+                Disaster Land Evidence Recovery & Cadastral Restoration
               </p>
             </div>
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <div className="hidden lg:flex items-center gap-1">
             {activeNavLinks.map((item) => {
               const Icon = item.icon;
               const isActive = currentView === item.view;
@@ -129,13 +123,13 @@ export const Navbar: React.FC = () => {
                 <button
                   key={item.label}
                   onClick={() => setCurrentView(item.view)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-all ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
                     isActive 
-                      ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-glow-cyan' 
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent'
+                      ? 'bg-blue-600 text-white font-semibold shadow-sm' 
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800'
                   }`}
                 >
-                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-cyan-400' : 'text-slate-400'}`} />
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
                   {item.label}
                 </button>
               );
@@ -148,21 +142,21 @@ export const Navbar: React.FC = () => {
               <Search className="absolute left-2.5 top-2.5 w-3.5 h-3.5 text-slate-400" />
               <input
                 type="text"
-                placeholder="Search Property, Survey, Owner..."
+                placeholder="Search Survey #, ULPIN, Owner..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onFocus={() => setSearchFocused(true)}
-                className="w-full bg-slate-950/80 border border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
+                className="w-full bg-slate-950 border border-slate-700 rounded-md pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
               />
             </div>
 
             {/* Instant Search Dropdown */}
             {searchFocused && (searchResults.length > 0 || caseResults.length > 0) && (
-              <div className="absolute left-0 right-0 mt-2 bg-navy-900 border border-slate-700 rounded-xl shadow-glass p-2 z-50 max-h-80 overflow-y-auto">
+              <div className="absolute left-0 right-0 mt-1.5 bg-slate-900 border border-slate-700 rounded-lg shadow-xl p-2 z-50 max-h-80 overflow-y-auto">
                 {searchResults.length > 0 && (
                   <div>
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-2 py-1">
-                      Properties Matched ({searchResults.length})
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-2 py-1 font-semibold">
+                      Cadastral Parcels ({searchResults.length})
                     </div>
                     {searchResults.map(p => (
                       <div
@@ -172,10 +166,10 @@ export const Navbar: React.FC = () => {
                           setSearchFocused(false);
                           setSearchTerm('');
                         }}
-                        className="p-2 hover:bg-slate-800/80 rounded-lg cursor-pointer transition-colors flex items-center justify-between text-xs"
+                        className="p-2 hover:bg-slate-800 rounded-md cursor-pointer transition-colors flex items-center justify-between text-xs"
                       >
                         <div>
-                          <div className="font-semibold text-cyan-300">{p.id} — Sy {p.surveyNumber}</div>
+                          <div className="font-semibold text-blue-400">{p.id} — Sy {p.surveyNumber}</div>
                           <div className="text-slate-400 text-[11px]">{p.recordedOwner} • {p.village}, {p.taluk}</div>
                         </div>
                         <span className="text-[10px] font-mono px-1.5 py-0.5 bg-slate-800 text-slate-300 rounded">
@@ -188,8 +182,8 @@ export const Navbar: React.FC = () => {
 
                 {caseResults.length > 0 && (
                   <div className="mt-2 border-t border-slate-800 pt-1">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-purple-400 px-2 py-1">
-                      Recovery Cases ({caseResults.length})
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-2 py-1 font-semibold">
+                      Recovery Dockets ({caseResults.length})
                     </div>
                     {caseResults.map(c => (
                       <div
@@ -199,11 +193,11 @@ export const Navbar: React.FC = () => {
                           setSearchFocused(false);
                           setSearchTerm('');
                         }}
-                        className="p-2 hover:bg-slate-800/80 rounded-lg cursor-pointer transition-colors flex items-center justify-between text-xs"
+                        className="p-2 hover:bg-slate-800 rounded-md cursor-pointer transition-colors flex items-center justify-between text-xs"
                       >
                         <div>
-                          <div className="font-semibold text-purple-300">{c.caseId} ({c.ownerName})</div>
-                          <div className="text-slate-400 text-[11px]">{c.propertyId} • Score: {c.consistencyScore}%</div>
+                          <div className="font-semibold text-slate-200">{c.caseId} ({c.ownerName})</div>
+                          <div className="text-slate-400 text-[11px]">{c.propertyId} • Match: {c.consistencyScore}%</div>
                         </div>
                         <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
                       </div>
@@ -217,46 +211,42 @@ export const Navbar: React.FC = () => {
           {/* Role Switcher Pill & Actions */}
           <div className="flex items-center gap-2">
             
-            {/* 3-Minute Demo Quick Button */}
+            {/* 3-Minute Demo Guide Button */}
             <button
               onClick={() => {
                 setDemoGuideOpen(true);
                 jumpToDemoStep(1);
               }}
-              className="relative group hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-semibold hover:border-cyan-300 hover:shadow-glow-cyan transition-all"
-              title="Start guided 3-minute presentation for buildathon judges"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 text-blue-300 text-xs font-semibold transition-colors"
+              title="Launch 3-minute presentation script"
             >
-              <Play className="w-3.5 h-3.5 text-cyan-400 fill-cyan-400 group-hover:scale-110 transition-transform" />
-              <span>3-Min Demo</span>
-              <span className="flex h-1.5 w-1.5 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-500"></span>
-              </span>
+              <Play className="w-3.5 h-3.5 fill-blue-400 text-blue-400" />
+              <span>Demo Walkthrough</span>
             </button>
 
-            {/* Role Switcher Dropdown / Pills */}
-            <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800">
+            {/* Official Role Switcher Tabs */}
+            <div className="flex items-center bg-slate-950 p-0.5 rounded-lg border border-slate-800">
               <button
                 onClick={() => setRole('OWNER')}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
                   role === 'OWNER'
-                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    ? 'bg-blue-600 text-white shadow-sm font-semibold'
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
-                title="Switch to Property Owner perspective"
+                title="Citizen / Landowner Perspective"
               >
                 <UserCheck className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Owner</span>
+                <span className="hidden sm:inline">Citizen</span>
               </button>
 
               <button
                 onClick={() => setRole('AUTHORITY')}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
                   role === 'AUTHORITY'
-                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-sm'
+                    ? 'bg-blue-600 text-white shadow-sm font-semibold'
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
-                title="Switch to Government Authority Officer perspective"
+                title="Revenue Authority (SDM / Tahsildar)"
               >
                 <Building2 className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Authority</span>
@@ -264,27 +254,27 @@ export const Navbar: React.FC = () => {
 
               <button
                 onClick={() => setRole('ADMIN')}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
                   role === 'ADMIN'
-                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
+                    ? 'bg-blue-600 text-white shadow-sm font-semibold'
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
-                title="Switch to Admin & Ledger Audit perspective"
+                title="System Administration & Audit"
               >
                 <Sliders className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Admin</span>
               </button>
             </div>
 
-            {/* Reset Demo State Button */}
+            {/* Reset Demo Data Button */}
             <button
               onClick={() => {
-                if (window.confirm('Reset all demo records, evidence items, and simulated disasters to fresh buildathon state?')) {
+                if (window.confirm('Reset all demo records, evidence items, and simulated disasters to fresh baseline state?')) {
                   resetDemoData();
                 }
               }}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-transparent hover:border-slate-700 transition-all"
-              title="Reset Demo Data"
+              className="p-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-transparent transition-colors"
+              title="Reset Demo Records"
             >
               <RotateCcw className="w-4 h-4" />
             </button>
@@ -292,7 +282,7 @@ export const Navbar: React.FC = () => {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-1.5 rounded-lg text-slate-300 hover:bg-slate-800"
+              className="lg:hidden p-1.5 rounded-md text-slate-300 hover:bg-slate-800"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -302,9 +292,9 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-navy-950 border-b border-slate-800 px-4 py-3 space-y-2 animate-fadeIn">
-          <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">
-            Navigation ({role})
+        <div className="lg:hidden bg-slate-950 border-b border-slate-800 px-4 py-3 space-y-2">
+          <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-semibold">
+            Portal Navigation ({role})
           </div>
           {activeNavLinks.map(item => (
             <button
@@ -313,9 +303,9 @@ export const Navbar: React.FC = () => {
                 setCurrentView(item.view);
                 setMobileMenuOpen(false);
               }}
-              className={`w-full flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg text-left ${
+              className={`w-full flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-md text-left ${
                 currentView === item.view 
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' 
+                  ? 'bg-blue-600 text-white font-semibold' 
                   : 'text-slate-300 hover:bg-slate-800'
               }`}
             >
@@ -330,10 +320,10 @@ export const Navbar: React.FC = () => {
                 jumpToDemoStep(1);
                 setMobileMenuOpen(false);
               }}
-              className="w-full flex items-center justify-center gap-2 py-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/40 text-cyan-300 rounded-lg text-xs font-semibold"
+              className="w-full flex items-center justify-center gap-2 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold"
             >
-              <Play className="w-3.5 h-3.5 fill-cyan-400 text-cyan-400" />
-              Launch 3-Minute Buildathon Demo
+              <Play className="w-3.5 h-3.5 fill-white" />
+              Start 3-Minute Walkthrough
             </button>
           </div>
         </div>
